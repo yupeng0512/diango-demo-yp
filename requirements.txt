@@ -27,4 +27,6 @@ whitenoise==5.2.0
 gunicorn==19.6.0
 
 blueapps==4.8.0
+blueapps[opentelemetry]==4.4.5
+
 

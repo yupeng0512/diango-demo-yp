@@ -35,7 +35,12 @@ from blueapps.conf.log import get_logging_config_dict
 INSTALLED_APPS += (  # noqa
     "home_application",
     "mako_application",
+    "blueapps.opentelemetry.instrument_app",
 )
+
+ENABLE_OTEL_TRACE = True
+
+BK_APP_OTEL_INSTRUMENT_DB_API = True  # 是否开启 DB 访问 trace（开启后 span 数量会明显增多）
 
 # 这里是默认的中间件，大部分情况下，不需要改动
 # 如果你已经了解每个默认 MIDDLEWARE 的作用，确实需要去掉某些 MIDDLEWARE，或者改动先后顺序，请去掉下面的注释，然后修改
@@ -106,7 +111,6 @@ LOGGING = get_logging_config_dict(locals())
 # 初始化管理员列表，列表中的人员将拥有预发布环境和正式环境的管理员权限
 # 注意：请在首次提测和上线前修改，之后的修改将不会生效
 INIT_SUPERUSER = []
-
 
 # 使用mako模板时，默认打开的过滤器：h(过滤html)
 MAKO_DEFAULT_FILTERS = ["h"]
